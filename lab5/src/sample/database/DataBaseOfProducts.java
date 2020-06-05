@@ -118,5 +118,4 @@ public class DataBaseOfProducts {
     resultSet.close();
     preparedStatement.close();
   }
-
 }

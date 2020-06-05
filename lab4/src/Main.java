@@ -69,6 +69,11 @@ public class Main {
                         }
                         break;
                     }
+
+                    default: {
+                        System.out.println("Incorrect command:");
+                        break;
+                    }
                 }
             }
         } catch(SQLException e) {

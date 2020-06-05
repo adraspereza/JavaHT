@@ -6,11 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.*;
+
 import java.util.Random;
 import java.sql.SQLException;
+
 import sample.pojo.Product;
 import sample.database.DataBaseOfProducts;
-
 
 public class Controller {
 
@@ -44,7 +45,7 @@ public class Controller {
     private void initialize() throws SQLException, ClassNotFoundException {
         dataBaseOfProducts = new DataBaseOfProducts();
         for (int i = 1; i <= 10; i++) {
-            dataBaseOfProducts.addProduct(Math.abs(new Random().nextInt()), i,"pr" + i, i * 10);
+            dataBaseOfProducts.addProduct(Math.abs(new Random().nextInt()), i, "pr" + i, i * 10);
         }
         dataBaseOfProducts.getAllProducts(productsData);
         idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
@@ -59,13 +60,21 @@ public class Controller {
         productsData.clear();
         try {
             String titleText = title.getText();
-            int priceText = Integer.parseInt(price.getText());
-            if (!(dataBaseOfProducts.addProduct(Math.abs(new Random().nextInt()), Math.abs(new Random().nextInt()), titleText, priceText))) {
+            if (titleText == null || titleText.trim().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Can not add the product");
                 alert.setHeaderText(null);
-                alert.setContentText("There is already such product");
+                alert.setContentText("Empty title");
                 alert.showAndWait();
+            } else {
+                int priceText = Integer.parseInt(price.getText());
+                if (!(dataBaseOfProducts.addProduct(Math.abs(new Random().nextInt()), Math.abs(new Random().nextInt()), titleText, priceText))) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Can not add the product");
+                    alert.setHeaderText(null);
+                    alert.setContentText("There is already such product");
+                    alert.showAndWait();
+                }
             }
             dataBaseOfProducts.getAllProducts(productsData);
             tableProducts.setItems(productsData);
@@ -84,12 +93,20 @@ public class Controller {
         tableProducts.getItems().clear();
         productsData.clear();
         String titleText = title.getText();
-        if(!(dataBaseOfProducts.removeProduct(titleText))) {
+        if (titleText == null || titleText.trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Can not delete the product");
+            alert.setTitle("Can not add the product");
             alert.setHeaderText(null);
-            alert.setContentText("There is no such product");
+            alert.setContentText("Empty title");
             alert.showAndWait();
+        } else {
+            if (!(dataBaseOfProducts.removeProduct(titleText))) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Can not delete the product");
+                alert.setHeaderText(null);
+                alert.setContentText("There is no such product");
+                alert.showAndWait();
+            }
         }
         dataBaseOfProducts.getAllProducts(productsData);
         tableProducts.setItems(productsData);
@@ -99,15 +116,23 @@ public class Controller {
         tableProducts.getItems().clear();
         productsData.clear();
         String titleText = title.getText();
-        if (!(dataBaseOfProducts.getPriceOfProduct(productsData,titleText))) {
+        if (titleText == null || titleText.trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Can not get the price of the product");
+            alert.setTitle("Can not add the product");
             alert.setHeaderText(null);
-            alert.setContentText("There is no such product");
-            tableProducts.getItems().clear();
-            productsData.clear();
-            dataBaseOfProducts.getAllProducts(productsData);
+            alert.setContentText("Empty title");
             alert.showAndWait();
+        } else {
+            if (!(dataBaseOfProducts.getPriceOfProduct(productsData, titleText))) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Can not get the price of the product");
+                alert.setHeaderText(null);
+                alert.setContentText("There is no such product");
+                tableProducts.getItems().clear();
+                productsData.clear();
+                dataBaseOfProducts.getAllProducts(productsData);
+                alert.showAndWait();
+            }
         }
         tableProducts.setItems(productsData);
     }
@@ -117,13 +142,21 @@ public class Controller {
         productsData.clear();
         try {
             String titleText = title.getText();
-            int priceText = Integer.parseInt(price.getText());
-            if (!(dataBaseOfProducts.changePriceOfProduct(titleText, priceText))) {
+            if (titleText == null || titleText.trim().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Can not change the price of the product");
+                alert.setTitle("Can not add the product");
                 alert.setHeaderText(null);
-                alert.setContentText("There is no such product");
+                alert.setContentText("Empty title");
                 alert.showAndWait();
+            } else {
+                int priceText = Integer.parseInt(price.getText());
+                if (!(dataBaseOfProducts.changePriceOfProduct(titleText, priceText))) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Can not change the price of the product");
+                    alert.setHeaderText(null);
+                    alert.setContentText("There is no such product");
+                    alert.showAndWait();
+                }
             }
             dataBaseOfProducts.getAllProducts(productsData);
             tableProducts.setItems(productsData);
