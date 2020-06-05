@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+    <children>
+        <TableView fx:id="tableProducts" layoutX="12.0" layoutY="13.0" prefHeight="324.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="150.0" text="id" />
+                <TableColumn fx:id="prodIdColumn" prefWidth="150.0" text="prodId" />
+                <TableColumn fx:id="titleColumn" prefWidth="150.0" text="title" />
+                <TableColumn fx:id="priceColumn" prefWidth="150.0" text="price" />
+            </columns>
+        </TableView>
+      <Button layoutX="551.0" layoutY="375.0" mnemonicParsing="false" onAction="#refreshOutputData" prefHeight="25.0" prefWidth="60.0" text="refresh" />
+      <Button layoutX="444.0" layoutY="375.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="25.0" prefWidth="84.0" text="delete" />
+      <Button layoutX="444.0" layoutY="465.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="84.0" text="add" />
+      <Button layoutX="444.0" layoutY="405.0" mnemonicParsing="false" onAction="#changePriceOfProduct" text="change price" />
+      <Button layoutX="444.0" layoutY="435.0" mnemonicParsing="false" onAction="#filterProductsByPrice" prefHeight="25.0" prefWidth="84.0" text="filter by price" />
+      <Button layoutX="444.0" layoutY="345.0" mnemonicParsing="false" onAction="#getPriceOfProduct" prefHeight="25.0" prefWidth="84.0" text="price" />
+      <Button layoutX="551.0" layoutY="345.0" mnemonicParsing="false" onAction="#clearInputData" prefHeight="25.0" prefWidth="60.0" text="clear" />
+      <TextField fx:id="title" layoutX="23.0" layoutY="345.0" />
+      <TextField fx:id="price" layoutX="23.0" layoutY="377.0" />
+      <TextField fx:id="leftEdge" layoutX="23.0" layoutY="409.0" />
+      <TextField fx:id="rightEdge" layoutX="23.0" layoutY="442.0" />
+      <Label layoutX="184.0" layoutY="381.0" text="price" />
+      <Label layoutX="184.0" layoutY="349.0" text="title" />
+      <Label layoutX="184.0" layoutY="413.0" text="leftedge" />
+      <Label layoutX="184.0" layoutY="446.0" text="rightedge" />
+    </children>
+</AnchorPane>
