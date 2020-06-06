@@ -11,7 +11,6 @@ public class Room {
     public final int maxStudents = 10;
     private final Instructor instructor;
 
-
     public Room() throws InterruptedException
     {
         Subject[] subjects = Subject.values();
@@ -19,9 +18,9 @@ public class Room {
             students.put(subject, new ConcurrentLinkedQueue<>());
         }
 
-        Teacher physRobot = new Teacher(Subject.PHYS, this, "Физик");
-        Teacher oopRobot = new Teacher(Subject.OOP, this, "Прогер");
-        Teacher mathRobot = new Teacher(Subject.MATH, this, "Математик");
+        Teacher physRobot = new Teacher(Subject.PHYS, this, "Physic teacher");
+        Teacher oopRobot = new Teacher(Subject.OOP, this, "OOP teacher");
+        Teacher mathRobot = new Teacher(Subject.MATH, this, "Math teacher");
         teachers.put(Subject.PHYS, physRobot);
         teachers.put(Subject.OOP, oopRobot);
         teachers.put(Subject.MATH, mathRobot);
@@ -35,11 +34,9 @@ public class Room {
         mathRobot.start();
     }
 
-
     private Map<Subject, Queue<Student>> students = new HashMap<>(3);
     private Map<Subject, Teacher> teachers = new HashMap<>(teachersCount);
     private boolean closed = false;
-
 
     public void add(Student student, boolean notify) throws InterruptedException
     {
@@ -50,7 +47,7 @@ public class Room {
             }
         }
 
-        System.out.println(String.format("[STUD] %s | Лабораторных: %s", student.getSubject(), student.getLabs()));
+        System.out.println(String.format("STUD - %s | Labs: %s", student.getSubject(), student.getLabs()));
 
         if (getSize() >= maxStudents) {
             synchronized (instructor) {
@@ -70,7 +67,7 @@ public class Room {
                 if (closed) {
                     teachers.get(subject).setClosed(true);
                 } else {
-                    System.out.println("[ROBO] " + subject + " | " + teachers.get(subject).getName() + ": простаивает.");
+                    System.out.println("TEACH - " + subject + " | " + teachers.get(subject).getName() + " waiting");
                     teachers.get(subject).wait();
                 }
             }
@@ -102,7 +99,7 @@ public class Room {
 
     public void stop()
     {
-        System.out.println("/// Гидрак закрыт из-за 2099-nCoV... ///");
+        System.out.println("This is the end...");
         closed = true;
 
         synchronized (instructor) {

@@ -1,12 +1,12 @@
 package Structure;
 
 public class Instructor extends Thread implements Robot {
-    final private String prefix = "[ROBO] INST | Инструктор: ";
+    final private String prefix = "Instructor: ";
 
     public Instructor(Room queue)
     {
         this.queue = queue;
-        System.out.println(prefix + "готов к работе.");
+        System.out.println(prefix + "Ready to work");
     }
 
     private boolean closed = false;
@@ -15,11 +15,11 @@ public class Instructor extends Thread implements Robot {
     @Override
     public void run() {
         try {
-            System.out.println(prefix + "начат запуск студентов.");
+            System.out.println(prefix + "Launching students");
             while (!closed) {
                 queue.add(Student.getRandomStudent(), true);
             }
-            System.out.println(prefix + "запуск студентов окончен.");
+            System.out.println(prefix + "Launching end");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

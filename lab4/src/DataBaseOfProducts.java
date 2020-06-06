@@ -27,7 +27,7 @@ public class DataBaseOfProducts {
 
     public void addProduct(String title, int price) throws SQLException {
         if(!checkTitleOfProduct(title)) {
-            System.out.println("Title is incorrect");
+            System.out.println("Title of product is incorrect");
             return;
         }
 
@@ -106,7 +106,7 @@ public class DataBaseOfProducts {
 
     public void changePriceOfProduct(String title, int price) throws SQLException {
         if(!checkTitleOfProduct(title)){
-            System.out.println("Title is incorrect");
+            System.out.println("Title of product is incorrect");
             return;
         }
 

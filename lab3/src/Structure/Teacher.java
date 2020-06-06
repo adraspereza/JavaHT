@@ -5,17 +5,15 @@ public class Teacher extends Thread implements Robot {
     final protected int labsPerTick = 5;
     final String prefix;
 
-
     public Teacher(Subject subject, Room queue, String name)
     {
         super();
         this.subject = subject;
         this.queue = queue;
         this.setName(name);
-        this.prefix = String.format("[ROBO] %s | %s: ", subject, name);
-        System.out.println(prefix + "Готов");
+        this.prefix = String.format("TEACH - %s | %s - ", subject, name);
+        System.out.println(prefix + "Ready to work");
     }
-
 
     private Subject subject;
     private boolean closed = false;
@@ -25,11 +23,11 @@ public class Teacher extends Thread implements Robot {
     public void run()
     {
         try {
-            System.out.println(prefix + "Предмет " + subject);
+            System.out.println(prefix + "Subject: " + subject);
             while (!closed) {
                 Student student = null;
                 try {
-                    while ((student == null) && !closed) {
+                    while (student == null && !closed) {
                         student = queue.poll(subject);
                     }
                     if (closed) {
@@ -40,14 +38,14 @@ public class Teacher extends Thread implements Robot {
                     while (labsToDo > 0) {
                         labsToDo -= labsPerTick;
                         sleep(10);
-                        System.out.println(prefix + "Остаток по работам: " + labsToDo);
+                        System.out.println(prefix + "Work left: " + labsToDo);
                     }
-                    System.out.println(prefix + "Работ сдано: " + student.getLabs());
+                    System.out.println(prefix + "Submitted works: " + student.getLabs());
                 } catch (NullPointerException e) {
-                    System.out.println(prefix + " ");
+                    System.out.println(prefix + "Nullpo! Зашел на @channel. ");
                 }
             }
-            System.out.println(prefix + "Конец ");
+            System.out.println(prefix + "End");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

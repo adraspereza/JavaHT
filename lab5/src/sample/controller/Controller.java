@@ -64,7 +64,7 @@ public class Controller {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Can not add the product");
                 alert.setHeaderText(null);
-                alert.setContentText("Empty title");
+                alert.setContentText("Title of product is incorrect");
                 alert.showAndWait();
             } else {
                 int priceText = Integer.parseInt(price.getText());
@@ -97,7 +97,7 @@ public class Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Can not add the product");
             alert.setHeaderText(null);
-            alert.setContentText("Empty title");
+            alert.setContentText("Title of product is incorrect");
             alert.showAndWait();
         } else {
             if (!(dataBaseOfProducts.removeProduct(titleText))) {
@@ -120,7 +120,7 @@ public class Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Can not add the product");
             alert.setHeaderText(null);
-            alert.setContentText("Empty title");
+            alert.setContentText("Title of product is incorrect");
             alert.showAndWait();
         } else {
             if (!(dataBaseOfProducts.getPriceOfProduct(productsData, titleText))) {
@@ -146,7 +146,7 @@ public class Controller {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Can not add the product");
                 alert.setHeaderText(null);
-                alert.setContentText("Empty title");
+                alert.setContentText("Title of product is incorrect");
                 alert.showAndWait();
             } else {
                 int priceText = Integer.parseInt(price.getText());

@@ -25,7 +25,7 @@ public class Main {
                             int priceOfProduct = scanner.nextInt();
                             dataBaseOfProducts.addProduct(titleOfProduct, priceOfProduct);
                         } catch (InputMismatchException e) {
-                            System.out.println("Price is incorrect");
+                            System.out.println("Price must be a number");
                         }
                         break;
                     }
@@ -53,7 +53,7 @@ public class Main {
                             int priceOfProduct = scanner.nextInt();
                             dataBaseOfProducts.changePriceOfProduct(titleOfProduct, priceOfProduct);
                         } catch (InputMismatchException e) {
-                            System.out.println("Price is incorrect");
+                            System.out.println("Price must be a number");
                         }
                         break;
                     }
@@ -64,7 +64,7 @@ public class Main {
                             int rightEdge = scanner.nextInt();
                             dataBaseOfProducts.filterByPrice(leftEdge, rightEdge);
                         } catch (InputMismatchException e) {
-                            System.out.println("One or two edges are incorrect");
+                            System.out.println("Both edges must be numbers");
                             scanner.reset();
                         }
                         break;
